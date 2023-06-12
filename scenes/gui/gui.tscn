@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://daspbr1sqqe1j"]
 
 [ext_resource type="Script" path="res://scenes/gui/gui.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://o2tkk6g5mn43" path="res://scenes/gui/screens/start_screen.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://ddpnyneuoni0l" path="res://scenes/gui/screens/playing_screen.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://dn8awm6cpj8eu" path="res://scenes/gui/screens/game_over_screen.tscn" id="4"]
-[ext_resource type="AudioStream" uid="uid://ro18av1entyh" path="res://sounds/swoosh.wav" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/gui/screens/start_screen.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/gui/screens/playing_screen.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/gui/screens/game_over_screen.tscn" id="4"]
+[ext_resource type="AudioStream" uid="uid://b17nlcllmsmu5" path="res://sounds/swoosh.wav" id="5"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -20,7 +20,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0)]
 }
-script = null
 
 [sub_resource type="Animation" id="2"]
 resource_name = "transition"
@@ -37,23 +36,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
-script = null
 
 [sub_resource type="AnimationLibrary" id="3"]
 _data = {
-"RESET": SubResource( "1" ),
-"transition": SubResource( "2" )
+"RESET": SubResource("1"),
+"transition": SubResource("2")
 }
-script = null
 
 [node name="GUI" type="CanvasLayer"]
-script = ExtResource( "1" )
+script = ExtResource("1")
 
-[node name="StartScreen" parent="." instance=ExtResource( "2" )]
+[node name="StartScreen" parent="." instance=ExtResource("2")]
 
-[node name="PlayingScreen" parent="." instance=ExtResource( "3" )]
+[node name="PlayingScreen" parent="." instance=ExtResource("3")]
 
-[node name="GameOverScreen" parent="." instance=ExtResource( "4" )]
+[node name="GameOverScreen" parent="." instance=ExtResource("4")]
 
 [node name="Transition" type="CanvasLayer" parent="."]
 layer = 10
@@ -69,9 +66,9 @@ mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Transition"]
 libraries = {
-"": SubResource( "3" )
+"": SubResource("3")
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Transition"]
-stream = ExtResource( "5" )
+stream = ExtResource("5")
 max_polyphony = 2

@@ -25,7 +25,7 @@ func _on_changed_to():
 func _info_card_appeared():
 	$InfoCard/Score.text = "0"
 	_last_score = 0
-#	current_score = 50
+	current_score = 50
 	_score_tween = create_tween()
 	var duration := 0.5
 	if current_score > 10:

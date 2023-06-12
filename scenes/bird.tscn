@@ -1,45 +1,44 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=10 format=3 uid="uid://b6wunh6737fcb"]
 
 [ext_resource type="Script" path="res://scenes/bird.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://bqytamxx788op" path="res://textures/bird/bird_yellow_mid.tres" id="2"]
-[ext_resource type="Texture2D" uid="uid://bcdojwbyg36mw" path="res://textures/bird/bird_yellow_up.tres" id="3"]
-[ext_resource type="Texture2D" uid="uid://bivkpaxc6du0q" path="res://textures/bird/bird_yellow_down.tres" id="4"]
-[ext_resource type="AudioStream" uid="uid://db1moerfiuora" path="res://sounds/wing.wav" id="5"]
-[ext_resource type="AudioStream" uid="uid://bfgdvnjr0pqb" path="res://sounds/die.wav" id="6"]
-[ext_resource type="AudioStream" uid="uid://x8gn0b5pxo45" path="res://sounds/hit.wav" id="7"]
-[ext_resource type="AudioStream" uid="uid://beh4pvtbid7vn" path="res://sounds/point.wav" id="8"]
+[ext_resource type="Texture2D" uid="uid://bc2e7nev2jsb8" path="res://textures/bird/bird_yellow_mid.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://cyr4nmeykxgmh" path="res://textures/bird/bird_yellow_up.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://u0b8guq7bcpp" path="res://textures/bird/bird_yellow_down.tres" id="4"]
+[ext_resource type="AudioStream" uid="uid://pdirljreukc2" path="res://sounds/wing.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://kr4iqwf3od6g" path="res://sounds/die.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://dq67ursum0tdt" path="res://sounds/hit.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://dgjjj73ibbj2v" path="res://sounds/point.wav" id="8"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource( "2" )
+"texture": ExtResource("2")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "3" )
+"texture": ExtResource("3")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "2" )
+"texture": ExtResource("2")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "4" )
+"texture": ExtResource("4")
 }],
 "loop": true,
 "name": &"fly",
 "speed": 10.0
 }]
-script = null
 
 [node name="Bird" type="Area2D"]
 gravity_space_override = 3
 gravity = 500.0
 angular_damp = 100.0
-script = ExtResource( "1" )
+script = ExtResource("1")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-sprite_frames = SubResource( "1" )
+sprite_frames = SubResource("1")
 animation = &"fly"
 frame_progress = 0.52855
 
@@ -47,18 +46,18 @@ frame_progress = 0.52855
 polygon = PackedVector2Array(-8.5, -2, -2.5, -6, 3.5, -6, 6.5, -3, 8.5, 1.5, 6.5, 5, 1.5, 6, -3.5, 6, -8.5, 5)
 
 [node name="WingSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "5" )
+stream = ExtResource("5")
 max_polyphony = 4
 
 [node name="DieSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "6" )
+stream = ExtResource("6")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "7" )
+stream = ExtResource("7")
 max_polyphony = 2
 
 [node name="ScoreSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "8" )
+stream = ExtResource("8")
 max_polyphony = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered" flags=18]
