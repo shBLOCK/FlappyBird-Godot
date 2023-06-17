@@ -1,44 +1,41 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://ccfrwka38gfbp"]
 
 [ext_resource type="Script" path="res://scenes/gui/screens/start_screen.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/gui/title_bob.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://cy51wkkakygn0" path="res://textures/ui/title.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://d3yehn7jpo3is" path="res://textures/ui/title.tres" id="3"]
 [ext_resource type="Script" path="res://scenes/gui/bird_sprite.gd" id="4"]
-[ext_resource type="Texture2D" uid="uid://bqytamxx788op" path="res://textures/bird/bird_yellow_mid.tres" id="5"]
-[ext_resource type="Texture2D" uid="uid://bcdojwbyg36mw" path="res://textures/bird/bird_yellow_up.tres" id="6"]
-[ext_resource type="Texture2D" uid="uid://bivkpaxc6du0q" path="res://textures/bird/bird_yellow_down.tres" id="7"]
-[ext_resource type="Texture2D" uid="uid://c163617wa7uny" path="res://textures/ui/buttons/button_play.tres" id="8"]
-[ext_resource type="Texture2D" uid="uid://bt1vfe05vn1hm" path="res://textures/ui/buttons/button_scores.tres" id="9"]
+[ext_resource type="Texture2D" uid="uid://bc2e7nev2jsb8" path="res://textures/bird/bird_yellow_mid.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://cyr4nmeykxgmh" path="res://textures/bird/bird_yellow_up.tres" id="6"]
+[ext_resource type="Texture2D" uid="uid://u0b8guq7bcpp" path="res://textures/bird/bird_yellow_down.tres" id="7"]
+[ext_resource type="Texture2D" uid="uid://djo1jihq1kl0h" path="res://textures/ui/buttons/button_play.tres" id="8"]
+[ext_resource type="Texture2D" uid="uid://djdunlyeljny8" path="res://textures/ui/buttons/button_scores.tres" id="9"]
 
-[sub_resource type="SpriteFrames" id="1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ga3b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource( "5" )
+"texture": ExtResource("5")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "6" )
+"texture": ExtResource("7")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "5" )
+"texture": ExtResource("5")
 }, {
 "duration": 1.0,
-"texture": ExtResource( "7" )
+"texture": ExtResource("6")
 }],
 "loop": true,
 "name": &"fly",
 "speed": 10.0
 }]
-script = null
 
 [sub_resource type="InputEventKey" id="2"]
 device = -1
 keycode = 4194309
-script = null
 
 [sub_resource type="Shortcut" id="3"]
-events = [SubResource( "2" )]
-script = null
+events = [SubResource("2")]
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
@@ -47,22 +44,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource( "1" )
+script = ExtResource("1")
 
 [node name="TitleContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_top = 40.6421
+anchor_bottom = 0.5
+offset_bottom = -38.0072
 grow_horizontal = 2
+grow_vertical = 0
 alignment = 1
-script = ExtResource( "2" )
+script = ExtResource("2")
 
 [node name="Title" type="TextureRect" parent="TitleContainer"]
 texture_filter = 1
 layout_mode = 2
-texture = ExtResource( "3" )
+texture = ExtResource("3")
 stretch_mode = 3
 
 [node name="VSeparator" type="VSeparator" parent="TitleContainer"]
@@ -73,12 +73,12 @@ theme_override_constants/separation = 0
 [node name="BirdSprite" type="Control" parent="TitleContainer"]
 custom_minimum_size = Vector2(17, 0)
 layout_mode = 2
-script = ExtResource( "4" )
+script = ExtResource("4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TitleContainer/BirdSprite"]
 texture_filter = 1
 position = Vector2(8.5, 11)
-sprite_frames = SubResource( "1" )
+sprite_frames = SubResource("SpriteFrames_7ga3b")
 animation = &"fly"
 autoplay = "fly"
 
@@ -86,19 +86,18 @@ autoplay = "fly"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_bottom = -45.0
+anchor_bottom = 0.5
+offset_top = 45.0
 grow_horizontal = 2
-grow_vertical = 0
 
 [node name="PlayButton" type="TextureButton" parent="ButtonsContainer"]
 texture_filter = 1
 layout_mode = 2
-shortcut = SubResource( "3" )
+shortcut = SubResource("3")
 shortcut_in_tooltip = false
-texture_normal = ExtResource( "8" )
+texture_normal = ExtResource("8")
 stretch_mode = 3
 
 [node name="VSeparator" type="VSeparator" parent="ButtonsContainer"]
@@ -109,7 +108,7 @@ theme_override_constants/separation = 10
 [node name="ScoresButton" type="TextureButton" parent="ButtonsContainer"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource( "9" )
+texture_normal = ExtResource("9")
 stretch_mode = 3
 
 [connection signal="pressed" from="ButtonsContainer/PlayButton" to="." method="_on_play_button_pressed" flags=18]

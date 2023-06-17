@@ -1,178 +1,28 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=13 format=3 uid="uid://bf4evcyg8hb57"]
 
 [ext_resource type="Script" path="res://scenes/gui/screens/game_over_screen.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://c31ihyd12pkwp" path="res://textures/ui/title_gameover.tres" id="2"]
-[ext_resource type="Texture2D" uid="uid://c05lpnhgt57kc" path="res://textures/ui/info_card.tres" id="3"]
+[ext_resource type="Texture2D" uid="uid://bwldlejsj5ii3" path="res://textures/ui/title_gameover.tres" id="2"]
+[ext_resource type="PackedScene" uid="uid://ed0g0qvas6ag" path="res://scenes/gui/animation/gui_shader_animator.tscn" id="2_fwe2q"]
+[ext_resource type="Texture2D" uid="uid://don4a6u3lj43x" path="res://textures/ui/info_card.tres" id="3"]
 [ext_resource type="FontFile" uid="uid://pqhgeyprijmh" path="res://textures/ui/fonts/numbers_mid.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cua8ty5rbuc5a" path="res://textures/ui/buttons/button_ok.tres" id="5"]
-[ext_resource type="Texture2D" uid="uid://dlyymjm02vb5q" path="res://textures/ui/buttons/button_share.tres" id="6"]
-[ext_resource type="AudioStream" uid="uid://cs5kij6aevyil" path="res://sounds/medal.wav" id="7"]
+[ext_resource type="Shader" path="res://scenes/gui/animation/offset.gdshader" id="4_7tbb6"]
+[ext_resource type="Texture2D" uid="uid://d0v5d4vn4q48o" path="res://textures/ui/buttons/button_ok.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://cnsw8bp0hef2x" path="res://textures/ui/buttons/button_share.tres" id="6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ht4do"]
+shader = ExtResource("4_7tbb6")
+shader_parameter/offset = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hu1xr"]
+shader = ExtResource("4_7tbb6")
+shader_parameter/offset = null
 
 [sub_resource type="InputEventKey" id="1"]
 device = -1
 keycode = 4194309
-script = null
 
 [sub_resource type="Shortcut" id="2"]
-events = [SubResource( "1" )]
-script = null
-
-[sub_resource type="Animation" id="3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOverTitle:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(37, 40)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("InfoCard:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(28.5, 81)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GameOverTitle:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ButtonsContainer:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ButtonsContainer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"show"
-}]
-}
-script = null
-
-[sub_resource type="Animation" id="4"]
-resource_name = "appear"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOverTitle:modulate")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GameOverTitle:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.784584, 1),
-"update": 0,
-"values": [Vector2(37, 20), Vector2(37, 40)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("InfoCard:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(28.5, 230), Vector2(28.5, 230), Vector2(28.5, 81)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("ButtonsContainer:modulate")
-tracks/3/interp = 2
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ButtonsContainer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"hide"
-}, {
-"args": [],
-"method": &"show"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_info_card_appeared"
-}]
-}
-script = null
-
-[sub_resource type="AnimationLibrary" id="5"]
-_data = {
-"RESET": SubResource( "3" ),
-"appear": SubResource( "4" )
-}
-script = null
+events = [SubResource("1")]
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -181,23 +31,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource( "1" )
+script = ExtResource("1")
 
-[node name="GameOverTitle" type="TextureRect" parent="."]
+[node name="InfoCardAnimator" parent="." instance=ExtResource("2_fwe2q")]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -48.0
-offset_top = 40.0
-offset_right = 48.0
-offset_bottom = 61.0
-grow_horizontal = 2
-texture = ExtResource( "2" )
-stretch_mode = 3
+material = SubResource("ShaderMaterial_ht4do")
 
-[node name="InfoCard" type="TextureRect" parent="."]
+[node name="AnchorRectProxy" parent="InfoCardAnimator" index="0" node_paths=PackedStringArray("source")]
+offset_right = 170.0
+offset_bottom = 220.0
+source = NodePath("../..")
+
+[node name="InfoCard" type="TextureRect" parent="InfoCardAnimator/AnchorRectProxy" index="0"]
+unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 8
@@ -208,13 +54,12 @@ anchor_bottom = 0.5
 offset_left = -56.5
 offset_top = -29.0
 offset_right = 56.5
-offset_bottom = 29.0004
+offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource( "3" )
+texture = ExtResource("3")
 
-[node name="Score" type="Label" parent="InfoCard"]
-texture_filter = 1
+[node name="Score" type="Label" parent="InfoCardAnimator/AnchorRectProxy/InfoCard"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 82.0
@@ -222,13 +67,12 @@ offset_top = 15.0
 offset_right = 102.0
 offset_bottom = 28.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource( "4" )
+theme_override_fonts/font = ExtResource("4")
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BestScore" type="Label" parent="InfoCard"]
-texture_filter = 1
+[node name="BestScore" type="Label" parent="InfoCardAnimator/AnchorRectProxy/InfoCard"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 82.0
@@ -236,13 +80,13 @@ offset_top = 36.0
 offset_right = 102.0
 offset_bottom = 49.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource( "4" )
+theme_override_fonts/font = ExtResource("4")
 text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Medal" type="TextureRect" parent="InfoCard"]
-texture_filter = 1
+[node name="Medal" type="TextureRect" parent="InfoCardAnimator/AnchorRectProxy/InfoCard"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 13.0
 offset_top = 21.0
@@ -252,23 +96,47 @@ pivot_offset = Vector2(11, 11)
 expand_mode = 1
 stretch_mode = 3
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+[node name="GameOverTitleAnimator" parent="." instance=ExtResource("2_fwe2q")]
+texture_filter = 1
+material = SubResource("ShaderMaterial_hu1xr")
+
+[node name="AnchorRectProxy" parent="GameOverTitleAnimator" index="0" node_paths=PackedStringArray("source")]
+offset_right = 170.0
+offset_bottom = 220.0
+source = NodePath("../..")
+
+[node name="GameOverTitle" type="TextureRect" parent="GameOverTitleAnimator/AnchorRectProxy" index="0"]
+unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_bottom = -45.0
+anchor_bottom = 0.5
+offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("2")
+stretch_mode = 3
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 45.0
+grow_horizontal = 2
 
 [node name="OkButton" type="TextureButton" parent="ButtonsContainer"]
 texture_filter = 1
 layout_mode = 2
-shortcut = SubResource( "2" )
+shortcut = SubResource("2")
 shortcut_in_tooltip = false
-texture_normal = ExtResource( "5" )
+texture_normal = ExtResource("5")
 stretch_mode = 3
 
 [node name="VSeparator" type="VSeparator" parent="ButtonsContainer"]
@@ -279,17 +147,28 @@ theme_override_constants/separation = 12
 [node name="ShareButton" type="TextureButton" parent="ButtonsContainer"]
 texture_filter = 1
 layout_mode = 2
-texture_normal = ExtResource( "6" )
+texture_normal = ExtResource("6")
 stretch_mode = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource( "5" )
-}
+[node name="MedalSoundPlayers" type="Node" parent="."]
 
-[node name="MedalSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( "7" )
-max_polyphony = 4
-bus = &"Medal"
+[node name="Node2D" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Node2D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = 90.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="ButtonsContainer/OkButton" to="." method="_on_ok_button_pressed" flags=18]
+
+[editable path="InfoCardAnimator"]
+[editable path="GameOverTitleAnimator"]

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dqkyd6esir3gd"]
+
+[ext_resource type="Shader" path="res://scenes/gui/animation/offset.gdshader" id="1_ekerb"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ekerb")
+shader_parameter/offset = null

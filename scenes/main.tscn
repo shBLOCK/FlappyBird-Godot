@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=3 uid="uid://cxb5vbh0s16uq"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1"]
-[ext_resource type="PackedScene" path="res://scenes/bird.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b6wunh6737fcb" path="res://scenes/bird.tscn" id="2"]
 [ext_resource type="Script" path="res://scenes/bird_reseter.gd" id="3"]
 [ext_resource type="Script" path="res://scenes/parallax_background.gd" id="4"]
 [ext_resource type="Script" path="res://scenes/background.gd" id="5"]
 [ext_resource type="Texture2D" uid="uid://boq3cp6e5bd27" path="res://textures/bg/bg_night.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cggo3hxidn5vm" path="res://textures/bg/bg_day.png" id="7"]
-[ext_resource type="Texture2D" path="res://textures/bg/ground.tres" id="8"]
+[ext_resource type="Texture2D" uid="uid://b7mviqq35dgpk" path="res://textures/bg/ground.tres" id="8"]
 [ext_resource type="PackedScene" uid="uid://daspbr1sqqe1j" path="res://scenes/gui/gui.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://scenes/screen_flash.tscn" id="10"]
 
@@ -19,7 +19,7 @@ script = ExtResource("1")
 [node name="Bird" parent="." instance=ExtResource("2")]
 visible = false
 z_index = 10
-position = Vector2(51, 89.9531)
+position = Vector2(51, 89.9046)
 
 [node name="BirdResetter" type="Node" parent="."]
 editor_description = "Handle resetting the bird's position and the bobbing animation when in \"Get Ready\" state."

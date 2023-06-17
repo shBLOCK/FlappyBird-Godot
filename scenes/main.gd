@@ -26,7 +26,8 @@ func _on_gui_start_game():
 	$PipeTimer.start()
 
 func gen_pipe_pair():
-	var mid_pos = Vector2(window.content_scale_size.x, randi_range(pipe_y_min, pipe_y_max))
+	var x_pos = get_viewport().size.x
+	var mid_pos = Vector2(x_pos, randi_range(pipe_y_min, pipe_y_max))
 	var gap = randi_range(pipe_gap_min, pipe_gap_max)
 	
 	var top = pipe_scene.instantiate().init(mid_pos - Vector2(0, gap), PI, $Bird, false)

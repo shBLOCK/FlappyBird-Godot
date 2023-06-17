@@ -17,6 +17,7 @@ func update_score(score: int):
 	$Score.text = str(score)
 
 func _on_changed_to():
+	update_score(0)
 	show()
 	pending_start = true
 	$AnimationPlayer.stop()
