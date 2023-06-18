@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1eby2apm4lyy"]
+
+[ext_resource type="Script" path="res://scenes/game/pipe/pipe.gd" id="1_jdh68"]
+[ext_resource type="Texture2D" uid="uid://c373xqbsk6o3s" path="res://textures/pipe/pipe_green_head.png" id="2_4ddbh"]
+[ext_resource type="Material" uid="uid://xyaj5w76wta2" path="res://scenes/game/pipe/pipe_body_shader.tres" id="3_o83xj"]
+[ext_resource type="Texture2D" uid="uid://cfwx8tw1gtdq0" path="res://textures/pipe/pipe_green_body.png" id="4_4ggqn"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(26, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hj5l"]
+size = Vector2(24, 1000)
+
+[node name="Pipe" type="Area2D"]
+texture_filter = 1
+collision_mask = 0
+script = ExtResource("1_jdh68")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0, 7)
+texture = ExtResource("2_4ddbh")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = ExtResource("3_o83xj")
+position = Vector2(0, 14)
+texture = ExtResource("4_4ggqn")
+centered = false
+offset = Vector2(-13, 0)
+
+[node name="CollisionBoxHead" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("1")
+
+[node name="CollisionBoxBody" type="CollisionShape2D" parent="."]
+position = Vector2(0, 512)
+shape = SubResource("RectangleShape2D_4hj5l")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-15, 0, 30, 10000)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_exited_screen" flags=18]

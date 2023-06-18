@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://7kd4b0i1w7yt"]
+[gd_scene load_steps=12 format=3 uid="uid://7kd4b0i1w7yt"]
 
 [ext_resource type="Script" path="res://scenes/gui/screens/playing_screen.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://bjpwxtxdke5lw" path="res://textures/ui/fonts/numbers_big.png" id="2"]
-[ext_resource type="Script" path="res://scenes/gui/score_label.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/gui/screens/score_label.gd" id="3_qsfxe"]
 [ext_resource type="Texture2D" uid="uid://dcfxppvffgedy" path="res://textures/ui/title_getready.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://crhe1xw0107d8" path="res://textures/ui/hint.tres" id="5"]
+[ext_resource type="Texture2D" uid="uid://ckvu61knnc8yg" path="res://textures/ui/buttons/button_pause.tres" id="6_do2lp"]
+[ext_resource type="Texture2D" uid="uid://i5llqq8kdwvc" path="res://textures/ui/buttons/button_continue.tres" id="7_kbbic"]
+[ext_resource type="Script" path="res://scenes/gui/screens/pause_button.gd" id="8_rh2vx"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -82,23 +85,29 @@ texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_top = 10.0
+anchor_bottom = 0.5
+offset_bottom = -75.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("2")
-text = "0123"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3")
+script = ExtResource("3_qsfxe")
 
 [node name="TitleGetReady" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_top = 40.0
+anchor_bottom = 0.5
+offset_bottom = -42.0
 grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 texture = ExtResource("4")
 stretch_mode = 3
@@ -125,3 +134,20 @@ stretch_mode = 3
 libraries = {
 "": SubResource("3")
 }
+
+[node name="PauseButton" type="TextureButton" parent="."]
+process_mode = 3
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_bottom = -87.0
+grow_vertical = 0
+toggle_mode = true
+texture_normal = ExtResource("6_do2lp")
+texture_pressed = ExtResource("7_kbbic")
+script = ExtResource("8_rh2vx")
+
+[connection signal="toggled" from="PauseButton" to="." method="_on_pause_button_toggled"]

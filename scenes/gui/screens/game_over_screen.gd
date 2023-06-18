@@ -4,6 +4,7 @@ extends Control
 signal reset_game
 
 var current_score := 0
+var high_score := 0
 var _score_tween: Tween
 
 func _on_ok_button_pressed():
@@ -19,7 +20,19 @@ func _on_ok_button_pressed():
 	_last_medal_tween = null
 	_last_delay = 0.0
 
+func load_highscore():
+	pass #TODO
+
+func save_highscore(score: int):
+	pass #TODO
+
 func _on_changed_to():
+	%InfoCard/Score.text = "0"
+	load_highscore()
+	if current_score > high_score:
+		save_highscore(current_score)
+	%InfoCard/NewLabel.hide()
+	
 	var t = create_tween().set_parallel()
 	
 	%GameOverTitle.modulate = Color.TRANSPARENT
@@ -48,13 +61,13 @@ func _on_changed_to():
 
 func _on_info_card_appeared():
 	current_score = 50
-	%InfoCard.get_node("Score").text = "0"
 	_last_score = 0
 	_score_tween = create_tween()
 	var duration = pow(current_score / 5.0, 0.3) * 5.0 / 5.0
 	_score_tween.tween_method(_info_card_score_tween_method, 0, current_score + 1, duration)\
 			.set_ease(Tween.EASE_OUT)\
 			.set_trans(Tween.TRANS_QUAD)
+	_score_tween.tween_callback(_info_card_score_tween_method.bind(current_score))
 
 class _MedalTier:
 	var id: int
@@ -121,11 +134,17 @@ func _info_card_score_tween_method(score: int):
 	if score > current_score:
 		return
 	
-	%InfoCard.get_node("Score").text = str(score)
+	%InfoCard/Score.text = str(score)
 	for tier in MEDAL_TIERS:
 		if _last_score < tier.score and score >= tier.score:
 			_add_medal(tier)
 	_last_score = score
+	
+	if score > high_score:
+		high_score = score
+		%InfoCard/HighScore.text = str(high_score)
+		if not %InfoCard/NewLabel.visible:
+			%InfoCard/NewLabel/AnimationPlayer.play("new_label_appear")
 
 func _process(_delta):
 	var bus = AudioServer.get_bus_index("Medal")

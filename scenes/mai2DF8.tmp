@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://cxb5vbh0s16uq"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b6wunh6737fcb" path="res://scenes/bird.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b1eby2apm4lyy" path="res://scenes/game/pipe/pipe.tscn" id="2_oplab"]
+[ext_resource type="Script" path="res://scenes/bird_reseter.gd" id="3"]
+[ext_resource type="Script" path="res://scenes/parallax_background.gd" id="4"]
+[ext_resource type="Script" path="res://scenes/background.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://boq3cp6e5bd27" path="res://textures/bg/bg_night.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cggo3hxidn5vm" path="res://textures/bg/bg_day.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b7mviqq35dgpk" path="res://textures/bg/ground.tres" id="8"]
+[ext_resource type="PackedScene" uid="uid://daspbr1sqqe1j" path="res://scenes/gui/gui.tscn" id="9"]
+[ext_resource type="PackedScene" path="res://scenes/screen_flash.tscn" id="10"]
+
+[sub_resource type="WorldBoundaryShape2D" id="1"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1")
+pipe_scene = ExtResource("2_oplab")
+
+[node name="Bird" parent="." instance=ExtResource("2")]
+visible = false
+z_index = 10
+position = Vector2(51, 82.3853)
+
+[node name="BirdResetter" type="Node" parent="."]
+editor_description = "Handle resetting the bird's position and the bobbing animation when in \"Get Ready\" state."
+script = ExtResource("3")
+
+[node name="Marker2D" type="Marker2D" parent="BirdResetter"]
+position = Vector2(51, 85)
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(0.25, 1)
+script = ExtResource("4")
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(276, 0)
+script = ExtResource("5")
+metadata/_edit_group_ = true
+
+[node name="Night" type="Sprite2D" parent="ParallaxBackground/Background"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(138, 115)
+texture = ExtResource("6")
+region_enabled = true
+region_rect = Rect2(0, 0, 276, 256)
+
+[node name="Day" type="Sprite2D" parent="ParallaxBackground/Background"]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(138, 115)
+texture = ExtResource("7")
+region_enabled = true
+region_rect = Rect2(0, 0, 276, 256)
+
+[node name="ParallaxGround" type="ParallaxBackground" parent="."]
+layer = 1
+script = ExtResource("4")
+
+[node name="Ground" type="ParallaxLayer" parent="ParallaxGround"]
+motion_mirroring = Vector2(168, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxGround/Ground"]
+texture_filter = 1
+position = Vector2(84, 215)
+texture = ExtResource("8")
+
+[node name="Area2D" type="Area2D" parent="ParallaxGround/Ground/Sprite2D" groups=["ground"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxGround/Ground/Sprite2D/Area2D"]
+position = Vector2(0, -28)
+shape = SubResource("1")
+one_way_collision_margin = 0.0
+
+[node name="GUI" parent="." instance=ExtResource("9")]
+
+[node name="ScreenFlash" parent="." instance=ExtResource("10")]
+
+[connection signal="died" from="Bird" to="." method="_on_bird_died" flags=18]
+[connection signal="hit" from="Bird" to="." method="_on_bird_hit" flags=18]
+[connection signal="score_changed" from="Bird" to="." method="_on_bird_score_changed" flags=18]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout" flags=18]
+[connection signal="prepare_game" from="GUI/StartScreen" to="." method="_on_gui_prepare_game" flags=18]
+[connection signal="start_game" from="GUI/PlayingScreen" to="." method="_on_gui_start_game" flags=18]
+[connection signal="reset_game" from="GUI/GameOverScreen" to="." method="_on_gui_reset_game" flags=18]
+
+[editable path="GUI"]

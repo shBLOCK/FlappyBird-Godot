@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://xyaj5w76wta2"]
+
+[ext_resource type="Shader" path="res://scenes/game/pipe/pipe_body.gdshader" id="1_jj323"]
+
+[resource]
+shader = ExtResource("1_jj323")

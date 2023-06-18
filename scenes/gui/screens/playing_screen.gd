@@ -2,6 +2,7 @@ extends Control
 
 
 signal start_game
+signal pause_changed(pause: bool)
 
 var pending_start := true
 
@@ -21,3 +22,6 @@ func _on_changed_to():
 	show()
 	pending_start = true
 	$AnimationPlayer.stop()
+
+func _on_pause_button_toggled(button_pressed):
+	pause_changed.emit(button_pressed)
