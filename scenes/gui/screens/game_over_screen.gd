@@ -20,15 +20,34 @@ func _on_ok_button_pressed():
 	_last_medal_tween = null
 	_last_delay = 0.0
 
-func load_highscore():
-	pass #TODO
+func load_highscore() -> int:
+	if not FileAccess.file_exists(Globals.SCORES_FILE):
+		save_highscore(0)
+		return 0
+	var file = FileAccess.open(Globals.SCORES_FILE, FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+	if data == null or not (data is Dictionary):
+		return 0
+	var highest = data.get("highest", 0)
+	match typeof(highest):
+		TYPE_INT, TYPE_FLOAT:
+			return highest as int
+	return 0
 
 func save_highscore(score: int):
-	pass #TODO
+	var file = FileAccess.open(Globals.SCORES_FILE, FileAccess.WRITE)
+	if file == null:
+		return
+	
+	var json = JSON.new()
+	file.store_string(JSON.stringify({"highest": score}))
+	file.close()
 
 func _on_changed_to():
 	%InfoCard/Score.text = "0"
-	load_highscore()
+	high_score = load_highscore()
+	%InfoCard/HighScore.text = str(high_score)
 	if current_score > high_score:
 		save_highscore(current_score)
 	%InfoCard/NewLabel.hide()
@@ -60,7 +79,7 @@ func _on_changed_to():
 	t.tween_property(%ButtonsContainer, "modulate", Color.WHITE, 0.5).set_delay(1)
 
 func _on_info_card_appeared():
-	current_score = 50
+#	current_score = 50
 	_last_score = 0
 	_score_tween = create_tween()
 	var duration = pow(current_score / 5.0, 0.3) * 5.0 / 5.0
